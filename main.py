@@ -8,12 +8,12 @@ import random
 import webbrowser
 import time
 import socket
-import requests
+import requests                                 #pip install requests
 print("initializing deeps")
 MASTER='Deeepaa'
 engine = pyttsx3.init('sapi5')
 voices=engine.getProperty('voices')
-engine.setProperty('voice',voices[1].id)
+engine.setProperty('voice',voices[1].id)        #set voices[0] for male voice
 
 # will speak the string being passed to it
 def speak(text):
@@ -57,8 +57,8 @@ def send_mail(to,content):
     server=smtplib.SMTP('smtp.gmail.com',587)
     server.ehlo()
     server.starttls()
-    server.login('lofoproject10@gmail.com','lpqftuykgspnmffz')
-    server.sendmail('lofoproject10@gmail.com',to,content)
+    server.login('Your mail id','Your app password')
+    server.sendmail('your mail id',to,content)
     server.close()
 
 speak(" Initializing deepsss...")
@@ -76,7 +76,7 @@ def start(query):
         speak(result)
 
     elif 'weather report' in query.lower() or 'weather' in query.lower():
-        api_address='http://api.openweathermap.org/data/2.5/weather?q=Kolkata&appid=482ec4f47da1e53bc6bf1435a26ebd99'
+        api_address='http://api.openweathermap.org/data/2.5/weather?q=Kolkata&appid= your app id '          #you can get it from openweathermap.org
         json_data=requests.get(api_address).json()
         data=json_data['weather'][0]['description']
         print(data)
@@ -101,8 +101,7 @@ def start(query):
     elif 'ip address' in query.lower() or 'location' in query.lower():
         hostname = socket.gethostname()
         ip_address = socket.gethostbyname(hostname)
-        url='http://api.ipstack.com/'+str(ip_address)+'? access_key= 530a172b657427456a8da34625602b63'
-        #url='http://api.ipstack.com/135.158.1.6?access_key=11e9efc06442bf4d25f3e15c5ded85a3'
+        url='http://api.ipstack.com/'+str(ip_address)+'? access_key= Your acess key'  #You can get the acess key from ipstack
         response=requests.get(url).json()
         ip=response.get("ip")
         print(ip)
@@ -155,11 +154,13 @@ def start(query):
         code_location="F:\\visualstudiocodes\\Code.exe"
         os.startfile(code_location)
 
-    elif 'mail to deepak' in query.lower() or 'mail' in query.lower():
+    elif 'mail to' in query.lower() or 'mail' in query.lower():
         try:
+            speak("Whom should i send the message ?")
+            mail_id = takecommand()
             speak("What message   should   i   send?")
             command= takecommand()
-            send_mail('pandeydeepak821@gmail.com',command)
+            send_mail(str(mail_id),command)
             speak("Email has been sent successfully")
         except Exception as e:
             print(e)
