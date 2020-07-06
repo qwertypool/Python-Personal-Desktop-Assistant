@@ -74,7 +74,8 @@ def start(query):
         result=wikipedia.summary(query,sentences=2)
         print(result)
         speak(result)
-
+        
+        #To display weather reports 
     elif 'weather report' in query.lower() or 'weather' in query.lower():
         api_address='http://api.openweathermap.org/data/2.5/weather?q=Kolkata&appid= your app id '          #you can get it from openweathermap.org
         json_data=requests.get(api_address).json()
@@ -155,6 +156,7 @@ def start(query):
         code_location="F:\\visualstudiocodes\\Code.exe"
         os.startfile(code_location)
 
+              #to send mail
     elif 'mail to' in query.lower() or 'mail' in query.lower():
         try:
             speak("Whom should i send the message ?")
