@@ -98,6 +98,7 @@ def start(query):
         joke=random.choice(jokes)
         speak(joke)
 
+        #To display IP address
     elif 'ip address' in query.lower() or 'location' in query.lower():
         hostname = socket.gethostname()
         ip_address = socket.gethostbyname(hostname)
