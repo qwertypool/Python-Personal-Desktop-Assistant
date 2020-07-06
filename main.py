@@ -176,7 +176,7 @@ def start(query):
         webbrowser.get(chrome_path).open(url)
 
     # elif 'open music' in query.lower():
-    #     music_location=
+    #     music_location= specify the location of music in your system
 
 
 while True:
